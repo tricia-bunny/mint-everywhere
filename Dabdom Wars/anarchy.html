@@ -14,6 +14,7 @@
         var player2hp = 1000;
         var player3hp = 1200;
         var player4hp = 900;
+        var player4hpmax = 900;
         var dabLoss = 0;
         var koydenLoss = 0;
         var hopeLoss = 0;
@@ -23,6 +24,7 @@
             document.getElementById("pl2").innerHTML = player2hp;
             document.getElementById("pl3").innerHTML = player3hp;
             document.getElementById("pl4").innerHTML = player4hp;
+            document.getElementById("pl4max").innerHTML = player4hpmax;
         }
     </script>
   </head>
@@ -38,7 +40,7 @@
     <br/>
     <img src="pixil-gif-drawing (3).gif" name="Dab" width="150">
     <br/>
-    Health: <span id="pl1">Placeholder</span>
+    Health: <span id="pl1">Placeholder</span> / 1000
     <br/>
     <button type="button" onclick="player1atk()">Normal Attack: Golden Blade</button>
     <br/>
@@ -56,7 +58,7 @@
     <br/>
     <img src="Köyden_3.gif" name="Köyden" width="150">
     <br/>
-    Health: <span id="pl2">Placeholder</span>
+    Health: <span id="pl2">Placeholder</span> / 1000
     <br/>
     <button type="button" onclick="player2atk()">Normal Attack: Enlightened Arc</button>
     <br/>
@@ -74,7 +76,7 @@
     <br/>
     <img src="pixil-gif-drawing%20(1).gif" name="Hope" width="150">
     <br/>
-    Health: <span id="pl3">Placeholder</span>
+    Health: <span id="pl3">Placeholder</span> / 1000
     <br/>
     <button type="button" onclick="player3atk()">Normal Attack: Unwavering</button>
     <br/>
@@ -90,20 +92,24 @@
     <br/>
     Skylon Shade
     <br/>
-    <img src="pixil-gif-drawing%20(2).gif" name="Cat" width="150">
+    <img src="pixil-gif-drawing%20(2).gif" name="Skylon" width="150">
     <br/>
-    Health: <span id="pl4">Placeholder</span>
+    Health: <span id="pl4">Placeholder</span> / <span id="pl4max">Placeholder</span>
     <br/>
-    <button type="button" onclick="player4atk()">Attack</button>
+    <button type="button" onclick="player4atk()">Normal Attack: Silken Blossoms</button>
     <br/>
-    <button type="button" onclick="player4skill()">Heal</button>
+    <button type="button" onclick="player4skill()">Skill: Defensive Tactics</button>
     <br/>
-    <button type="button" onclick="player4spe()">Special</button>
+    <button type="button" onclick="player4spe()">Ultimate: Cliffside Ambush</button>
     <br/>
     </div>
     <br/>
     <br/>
-    <button type="button" onclick="specialRain()">Special Rain</button>
+    <button type="button" onclick="specialRain()">Ultimate Rain</button>
+    <br/>
+    <button type="button" onclick="normalatkRain()">Normal Attack Rain</button>
+    <br/>
+    <button type="button" onclick="skillRain()">Skill Rain</button>
     <br/>
     <button type="button" onclick="checkIfDeadAndMore()">Check if Dead</button>
     <br/>
@@ -156,7 +162,11 @@
             checkIfDeadAndMore();
         }
         function player4skill() {
-            player4hp = player4hp + 14;
+            player4hp = player4hp + 25;
+            player4hpmax = player4hpmax + 25;
+            if (player4hpmax > 1500) {
+                player4hpmax = 1500;
+            }
             checkIfDeadAndMore();
         }
         function player1spe() {
@@ -192,10 +202,12 @@
             
         }
         function player4spe() {
-            var randAtk = Math.floor(Math.random() * 16);
+            var randAtk = Math.floor(Math.random() * 23);
             player1hp = player1hp - randAtk;
             player2hp = player2hp - randAtk;
             player3hp = player3hp - randAtk;
+            var randomAtk = randAtk * 2
+            player4hp = player4hp + randomAtk;
             checkIfDeadAndMore();
         }
         function nerf() {
@@ -212,43 +224,55 @@
             player4spe();
             checkIfDeadAndMore();
         }
+        function normalatkRain() {
+            player1atk();
+            player2atk();
+            player3atk();
+            player4atk();
+        }
+        function skillRain() {
+            player1skill();
+            player2skill();
+            player3skill();
+            player4skill();
+        }
         function checkIfDeadAndMore() {
-            if (player1hp > 500) {
-                player1hp = 500;
+            if (player1hp > 1000) {
+                player1hp = 1000;
             }
-            if (player2hp > 500) {
-                player2hp = 500;
+            if (player2hp > 1000) {
+                player2hp = 1000;
             }
-            if (player3hp > 500) {
-                player3hp = 500;
+            if (player3hp > 1200) {
+                player3hp = 100;
             }
-            if (player4hp > 400) {
-                player4hp = 400;
+            if (player4hp > player4hpmax) {
+                player4hp = player4hpmax;
             }
             if (dabLoss == 1) {
                 player1hp = "DEAD";
-            } else if (rebelLoss == 1) {
+            } else if (koydenLoss == 1) {
                 player2hp = "DEAD";
-            } else if (archLoss == 1) {
+            } else if (hopeLoss == 1) {
                 player3hp = "DEAD";
-            } else if (kittyLoss == 1) {
-                player4hp = "DEAD"
+            } else if (skyLoss == 1) {
+                player4hp = "DEAD";
             }
             if (player1hp < 1) {
-                alert("The Mork and Assistant Lose!!!");
+                alert("Dab the Fish Loses!!!");
                 dabLoss = 1;
             }
             if (player2hp < 1) {
-                alert("The Mork Rebellion Loses!!!");
-                rebelLoss = 1;
+                alert("Köyden Kyda Loses!!!");
+                koydenLoss = 1;
             }
             if (player3hp < 1) {
-                alert("The Archer Loses!!!");
-                archLoss = 1;
+                alert("Hope the Fish Loses!!!");
+                hopeLoss = 1;
             }
             if (player4hp < 1){
-                alert("The Kingdom's Cat Loses!!!");
-                kittyLoss = 1;
+                alert("Skylon Shade Loses!!!");
+                skyLoss = 1;
             }
             regenerateValues();
             
@@ -257,111 +281,111 @@
             //alert(player3hp);
             //alert(player4hp);
             //alert(dabLoss);
-            //alert(rebelLoss);
-            //alert(archLoss);
-            //alert(kittyLoss);
+            //alert(koydenLoss);
+            //alert(hopeLoss);
+            //alert(skyLoss);
             if (dabLoss == 1) {
-                if (rebelLoss == 1) {
-                    if (archLoss == 1) {
-                        alert("The Kingdom's Cat Wins!");
-                        window.location.href = "player4won.html";
-                    } else if (kittyLoss == 1) {
-                        alert("The Archer Wins!");
-                        window.location.href = "player3won.html";
+                if (koydenLoss == 1) {
+                    if (hopeLoss == 1) {
+                        alert("Skylon Shade Wins!");
+                        window.location.href = "skylonwon.html";
+                    } else if (skyLoss == 1) {
+                        alert("Hope the Fish Wins!");
+                        window.location.href = "hopewon.html";
                     }
-                } else if (archLoss == 1) {
-                    if (rebelLoss == 1) {
-                        alert("The Kingdom's Cat Wins!");
-                        window.location.href = "player4won.html";
-                    } else if (kittyLoss == 1) {
-                        alert("The Mork Rebellion Wins!");
-                        window.location.href = "player2won.html";
+                } else if (hopeLoss == 1) {
+                    if (koydenLoss == 1) {
+                        alert("Skylon Shade Wins!");
+                        window.location.href = "skylonwon.html";
+                    } else if (skyLoss == 1) {
+                        alert("Köyden Kyda Wins!");
+                        window.location.href = "köydenwon.html";
                     }
-                } else if (kittyLoss == 1) {
-                    if (rebelLoss == 1) {
-                        alert("The Archer Wins!");
-                        window.location.href = "player3won.html";
-                    } else if (archLoss == 1) {
-                        alert("The Mork Rebellion Wins!")
-                        window.location.href = "player2won.html";
+                } else if (skyLoss == 1) {
+                    if (koydenLoss == 1) {
+                        alert("Hope the Fish Wins!");
+                        window.location.href = "hopewon.html";
+                    } else if (hopeLoss == 1) {
+                        alert("Köyden Kyda Wins!")
+                        window.location.href = "köydenwon.html";
                     }
                 }
-            } else if (rebelLoss == 1) {
+            } else if (koydenLoss == 1) {
                 if (dabLoss == 1) {
-                    if (archLoss == 1) {
-                        alert("The Kingdom's Cat Wins!");
-                        window.location.href = "player4won.html";
-                    } else if (kittyLoss == 1) {
-                        alert("The Archer Wins!");
-                        window.location.href = "player3won.html";
+                    if (hopeLoss == 1) {
+                        alert("Skylon Shade Wins!");
+                        window.location.href = "skylonwon.html";
+                    } else if (skyLoss == 1) {
+                        alert("Hope the Fish Wins!");
+                        window.location.href = "hopewon.html";
                     }
-                } else if (archLoss == 1) {
+                } else if (hopeLoss == 1) {
                     if (dabLoss == 1) {
-                        alert("The Kingdom's Cat Wins!");
-                        window.location.href = "player4won.html";
-                    } else if (kittyLoss == 1) {
-                        alert("The Mork Wins!");
-                        window.location.href = "player1won.html";
+                        alert("Skylon Shade Wins!");
+                        window.location.href = "skylonwon.html";
+                    } else if (skyLoss == 1) {
+                        alert("Dab the Fish Wins!");
+                        window.location.href = "dabwon.html";
                     }
-                } else if (kittyLoss == 1) {
+                } else if (skyLoss == 1) {
                     if (dabLoss == 1) {
-                        alert("The Archer Wins!");
-                        window.location.href = "player3won.html";
-                    } else if (archLoss == 1) {
-                        alert("The Mork Wins!")
-                        window.location.href = "player1won.html";
+                        alert("Hope the Fish Wins!");
+                        window.location.href = "hopewon.html";
+                    } else if (hopeLoss == 1) {
+                        alert("Dab the Fish Wins!")
+                        window.location.href = "dabwon.html";
                     }
                 }
-            } else if (archLoss == 1) {
-                if (rebelLoss == 1) {
+            } else if (hopeLoss == 1) {
+                if (koydenLoss == 1) {
                     if (dabLoss == 1) {
-                        alert("The Kingdom's Cat Wins!");
-                        window.location.href = "player4won.html";
-                    } else if (kittyLoss == 1) {
-                        alert("The Mork Wins!");
-                        window.location.href = "player1won.html";
+                        alert("Skylon Shade Wins!");
+                        window.location.href = "skylonwon.html";
+                    } else if (skyLoss == 1) {
+                        alert("Dab the Fish Wins!");
+                        window.location.href = "dabwon.html";
                     }
                 } else if (dabLoss == 1) {
-                    if (rebelLoss == 1) {
-                        alert("The Kingdom's Cat Wins!");
-                        window.location.href = "player4won.html";
-                    } else if (kittyLoss == 1) {
-                        alert("The Mork Rebellion Wins!");
-                        window.location.href = "player2won.html";
+                    if (koydenLoss == 1) {
+                        alert("Skylon Shade Wins!");
+                        window.location.href = "skylonwon.html";
+                    } else if (skyLoss == 1) {
+                        alert("Köyden Kyda Wins!");
+                        window.location.href = "köydenwon.html";
                     }
-                } else if (kittyLoss == 1) {
-                    if (rebelLoss == 1) {
-                        alert("The Mork Wins!");
-                        window.location.href = "player1won.html";
+                } else if (skyLoss == 1) {
+                    if (koydenLoss == 1) {
+                        alert("Dab the Fish Wins!");
+                        window.location.href = "dabwon.html";
                     } else if (dabLoss == 1) {
-                        alert("The Mork Rebellion Wins!")
-                        window.location.href = "player2won.html";
+                        alert("Köyden Kyda Wins!")
+                        window.location.href = "köydenwon.html";
                     }
                 }
-            } else if (kittyLoss == 1) {
-                if (rebelLoss == 1) {
-                    if (archLoss == 1) {
-                        alert("The Mork Wins!");
-                        window.location.href = "player1won.html";
+            } else if (skyLoss == 1) {
+                if (koydenLoss == 1) {
+                    if (hopeLoss == 1) {
+                        alert("Dab the Fish Wins!");
+                        window.location.href = "dabwon.html";
                     } else if (dabLoss == 1) {
-                        alert("The Archer Wins!");
-                        window.location.href = "player1won.html";
+                        alert("Hope the Fish Wins!");
+                        window.location.href = "dabwon.html";
                     }
-                } else if (archLoss == 1) {
-                    if (rebelLoss == 1) {
-                        alert("The Mork Wins!");
-                        window.location.href = "player1won.html";
+                } else if (hopeLoss == 1) {
+                    if (koydenLoss == 1) {
+                        alert("Dab the Fish Wins!");
+                        window.location.href = "dabwon.html";
                     } else if (dabLoss == 1) {
-                        alert("The Mork Rebellion Wins!");
-                        window.location.href = "player2won.html";
+                        alert("Köyden Kyda Wins!");
+                        window.location.href = "köydenwon.html";
                     }
                 } else if (dabLoss == 1) {
-                    if (rebelLoss == 1) {
-                        alert("The Archer Wins!");
-                        window.location.href = "player3won.html";
-                    } else if (archLoss = 1) {
-                        alert("The Mork Rebellion Wins!")
-                        window.location.href = "player2won.html";
+                    if (koydenLoss == 1) {
+                        alert("Hope the Fish Wins!");
+                        window.location.href = "hopewon.html";
+                    } else if (hopeLoss = 1) {
+                        alert("Köyden Kyda Wins!")
+                        window.location.href = "köydenwon.html";
                     }
                 }
             } 

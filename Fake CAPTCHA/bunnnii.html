@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Google ReCAPTCHA</title>
+      <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans">
+    <style>
+        body {
+            font-family:Noto Sans;
+        }
+    </style>
+  </head>
+  <body>
+    <div style="font-size: 17px;">To continue, please type the characters below:</div>
+    <br/>
+    <img src="Screenshot%202023-11-09%207.25.46%20AM.png">
+    <br/>
+    <input type="text" id="textBox" value=""/>
+    <br/>
+    <button type="button" onclick="redirectPage()">Submit</button>
+    <br/>
+    <br/>
+    <div id="list"></div>
+    <br/>
+    <div style="font-size: 10px; font-weight: bold;">About this page</div>
+    <div style="font-size: 9px;">
+    Our systems have detected unusual traffic from your computer network. This page checks if it's really you sending the requests, and not a robot.
+    <a href="bunnni.html">Why did this happen?</a>
+    <br/>
+    <br/>
+    <div style="background-color: lightgray;">
+    <br/>
+    This page appears when Google automatically detects requests coming from your computer network which appear to be in violation of the <a href="https://google.com/policies/terms">Terms of Service</a>. The block will expire shortly after those requests stop. In the meantime, solving the above CAPTCHA will let you continue to use our services.
+    <br/>
+    <br/>
+    This traffic may have been sent by malicious software, a browser plug-in, or a script that sends automated requests. If you share your network connection, ask your administrator for help — a different computer using the same IP address may be responsible. <a href="https://support.google.com/websearch/answer/86640">Learn more</a>
+    <br/>
+    <br/>
+    Sometimes you may be asked to solve the CAPTCHA if you are using advanced terms that robots are known to use, or sending requests very quickly.
+    <br/>
+    </div>
+    <br/>
+    <br/>
+    IP address: 206.110.20.5
+    <br/>
+    Time: 2023-11-07T21:21:31Z
+    <br/>
+    URL: https://sites.google.com/pleasantonusd.net/elementary/home
+    <br/>
+    </div>
+    <br/>
+    <br/>
+    <script>
+        function redirectPage() {
+            var inputValue = document.getElementById('textBox').value;
+            if (inputValue === 'kokbfii') {
+                window.location.href = "https://sites.google.com/pleasantonusd.net/elementary/home";
+            }
+        }
+    </script>
+  </body>
+</html>
